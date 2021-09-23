@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UI.EnigmaController"
+            prefHeight="500.0" prefWidth="500.0">
+    <Group fx:id="out">
+
+            <Button fx:id="Q" layoutY="140" layoutX="40">Q</Button>
+            <Button fx:id="W" layoutY="140" layoutX="80">W</Button>
+            <Button fx:id="E" layoutY="140" layoutX="120">E</Button>
+            <Button fx:id="R" layoutY="140" layoutX="160">R</Button>
+            <Button fx:id="T" layoutY="140" layoutX="200">T</Button>
+            <Button fx:id="Z" layoutY="140" layoutX="240">Z</Button>
+            <Button fx:id="U" layoutY="140" layoutX="280">U</Button>
+            <Button fx:id="I" layoutY="140" layoutX="320">I</Button>
+            <Button fx:id="O" layoutY="140" layoutX="360">O</Button>
+            <Button fx:id="P" layoutY="140" layoutX="400">P</Button>
+
+            <Button fx:id="A" layoutY="180" layoutX="50">A</Button>
+            <Button fx:id="S" layoutY="180" layoutX="90">S</Button>
+            <Button fx:id="D" layoutY="180" layoutX="130">D</Button>
+            <Button fx:id="F" layoutY="180" layoutX="170">F</Button>
+            <Button fx:id="G" layoutY="180" layoutX="210">G</Button>
+            <Button fx:id="H" layoutY="180" layoutX="250">H</Button>
+            <Button fx:id="J" layoutY="180" layoutX="290">J</Button>
+            <Button fx:id="K" layoutY="180" layoutX="330">K</Button>
+            <Button fx:id="L" layoutY="180" layoutX="370">L</Button>
+
+            <Button fx:id="Y" layoutY="220" layoutX="60">Y</Button>
+            <Button fx:id="X" layoutY="220" layoutX="100">X</Button>
+            <Button fx:id="C" layoutY="220" layoutX="140">C</Button>
+            <Button fx:id="V" layoutY="220" layoutX="180">V</Button>
+            <Button fx:id="B" layoutY="220" layoutX="220">B</Button>
+            <Button fx:id="N" layoutY="220" layoutX="260">N</Button>
+            <Button fx:id="M" layoutY="220" layoutX="300">M</Button>
+
+    </Group>
+
+
+        <Group fx:id="in">
+
+                <Button fx:id="Qi" layoutY="10" layoutX="40">Q</Button>
+                <Button fx:id="Wi" layoutY="10" layoutX="80">W</Button>
+                <Button fx:id="Ei" layoutY="10" layoutX="120">E</Button>
+                <Button fx:id="Ri" layoutY="10" layoutX="160">R</Button>
+                <Button fx:id="Ti" layoutY="10" layoutX="200">T</Button>
+                <Button fx:id="Zi" layoutY="10" layoutX="240">Z</Button>
+                <Button fx:id="Ui" layoutY="10" layoutX="280">U</Button>
+                <Button fx:id="Ii" layoutY="10" layoutX="320">I</Button>
+                <Button fx:id="Oi" layoutY="10" layoutX="360">O</Button>
+                <Button fx:id="Pi" layoutY="10" layoutX="400">P</Button>
+
+                <Button fx:id="Ai" layoutY="50" layoutX="50">A</Button>
+                <Button fx:id="Si" layoutY="50" layoutX="90">S</Button>
+                <Button fx:id="Di" layoutY="50" layoutX="130">D</Button>
+                <Button fx:id="Fi" layoutY="50" layoutX="170">F</Button>
+                <Button fx:id="Gi" layoutY="50" layoutX="210">G</Button>
+                <Button fx:id="Hi" layoutY="50" layoutX="250">H</Button>
+                <Button fx:id="Ji" layoutY="50" layoutX="290">J</Button>
+                <Button fx:id="Ki" layoutY="50" layoutX="330">K</Button>
+                <Button fx:id="Li" layoutY="50" layoutX="370">L</Button>
+
+                <Button fx:id="Yi" layoutY="90" layoutX="60">Y</Button>
+                <Button fx:id="Xi" layoutY="90" layoutX="100">X</Button>
+                <Button fx:id="Ci" layoutY="90" layoutX="140">C</Button>
+                <Button fx:id="Vi" layoutY="90" layoutX="180">V</Button>
+                <Button fx:id="Bi" layoutY="90" layoutX="220">B</Button>
+                <Button fx:id="Ni" layoutY="90" layoutX="260">N</Button>
+                <Button fx:id="Mi" layoutY="90" layoutX="300">M</Button>
+
+        </Group>
+
+</AnchorPane>
