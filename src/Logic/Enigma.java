@@ -1,11 +1,6 @@
-import Logic.Rolle;
-import Logic.Rollwerk;
-import Logic.SteckBrett;
+package Logic;
 
 import java.io.*;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Enigma {
