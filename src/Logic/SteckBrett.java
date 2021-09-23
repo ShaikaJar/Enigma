@@ -41,7 +41,7 @@ public class SteckBrett {
      * @return Das Zeichen, mit dem der Input verbunden ist
      */
     public char tauschen(char input){
-        return (char) ((char) (wiring[(input - toChar) % wiring.length])+toChar);
+        return (char) ((char) (wiring[(input - toChar +wiring.length) % wiring.length])+toChar);
     }
 
 

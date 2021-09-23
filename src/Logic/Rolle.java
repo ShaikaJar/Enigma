@@ -18,7 +18,7 @@ public class Rolle {
     }
 
     public int decrementPosition() {
-        position = (position-1)%wiring.length;
+        position = (position-1+wiring.length)%wiring.length;
         return position;
     }
 
@@ -65,7 +65,7 @@ public class Rolle {
 
     private int runThrough(int input, boolean forward) {
         if (forward) {
-            return wiring[(input+position)%wiring.length];
+            return wiring[(input+position+wiring.length)%wiring.length];
         } else {
             return (char) Arrays.stream(wiring).filter(i -> input == wiring[i]).findFirst().orElse(-1);
         }
