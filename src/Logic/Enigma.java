@@ -1,47 +1,40 @@
 package Logic;
 
 import java.io.*;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Enigma {
 
 
     private Rollwerk rollwerk;
-    private InputStreamReader inputStream;
-    private OutputStreamWriter outputStream;
     private SteckBrett steckBrett;
 
-    public Enigma(Rollwerk rollwerk, SteckBrett steckBrett, InputStreamReader inputStream, OutputStreamWriter outputStream) {
+    public Enigma(Rollwerk rollwerk, SteckBrett steckBrett) {
         this.rollwerk = rollwerk;
         this.steckBrett = steckBrett;
-        this.inputStream = inputStream;
-        this.outputStream = outputStream;
-        Stream.generate(() -> {
-                    try {
-                        return Character.toUpperCase((char)inputStream.read());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return '@';
-                    }
-                }).map(character -> character==' '||character=='\n'?character:((character>='A' && character<='Z')?verschlüsseln(character):'_'))
-                .forEach(c -> {
-                    try {
-                        outputStream.write(c);
-                        outputStream.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
     }
 
     //qtiab
     public static void main(String[] args) {
         Enigma enigma = new Enigma(
                         new Rollwerk(Rolle.Rolle1,Rolle.Rolle2,Rolle.Rolle3),
-                        new SteckBrett(),
-                        new InputStreamReader(System.in),
-                        new OutputStreamWriter(System.out)
+                        new SteckBrett()
         );
+
+
+        Scanner sc = new Scanner(System.in);
+        while(true){
+            if(!sc.hasNextLine())
+                continue;
+            String inString = sc.nextLine();
+            StringBuffer out = new StringBuffer();
+            for (char inChar :
+                    inString.toCharArray()) {
+                out.append(enigma.verschlüsseln(inChar));
+            }
+            System.out.println(out);
+        }
 
     }
 
