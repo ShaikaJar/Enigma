@@ -1,62 +1,56 @@
 import Logic.Rolle;
-import Logic.UmkehrWalze;
+import Logic.Rollwerk;
 
+import java.io.*;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Enigma {
-    //qtiab
-    public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        verschluesselLoop:
-        while (true) {
-            String input = sc.nextLine().toUpperCase();
-            StringBuilder output = new StringBuilder();
-            for (int i = 0; i < input.length(); i++) {
-                char c = input.charAt(i);
-                if(c == ' '){
-                    output.append(c);
-                } else if((c >= 'A' && c <= 'Z')){
-                    output.append(verschlüsseln(c));
-                }
-                else{
-                    System.out.println("Ungültige eingabe programm beendet");
-                    break verschluesselLoop;
-                }
-            }
 
-            System.out.println("Verschlüsselt: " + input +" zu " + output);
+    private Rollwerk rollwerk;
+    private InputStreamReader inputStream;
+    private OutputStreamWriter outputStream;
 
-        }
-        System.out.println();
+    public Enigma(Rollwerk rollwerk, InputStreamReader inputStream, OutputStreamWriter outputStream) {
+        this.rollwerk = rollwerk;
+        this.inputStream = inputStream;
+        this.outputStream = outputStream;
+        Stream.generate(() -> {
+                    try {
+                        return Character.toUpperCase((char)inputStream.read());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return '@';
+                    }
+                }).map(character -> character==' '||character=='\n'?character:((character>='A' && character<='Z')?verschlüsseln(character):'_'))
+                .forEach(c -> {
+                    try {
+                        outputStream.write(c);
+                        outputStream.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 
+    //qtiab
+    public static void main(String[] args) {
+        Enigma enigma = new Enigma(
+                        new Rollwerk(Rolle.Rolle1,Rolle.Rolle2,Rolle.Rolle3),
+                        new InputStreamReader(System.in),
+                        new OutputStreamWriter(System.out)
+        );
 
-    public static Rolle activeRolle1 = Rolle.Rolle1;
-    public static Rolle activeRolle2 = Rolle.Rolle2;
-    public static Rolle activeRolle3 = Rolle.Rolle3;
+    }
 
-    public static char verschlüsseln(char in) {
-        // Verschlüssel den char
-        char forward1 = activeRolle1.forwaerts(in);
-        char forward2 = activeRolle2.forwaerts(forward1);
-        char forward3 = activeRolle3.forwaerts(forward2);
+    public char verschlüsseln(char in) {
+        //Signal durch Logic.Rollwerk schicken
+        char verschlüsselt = rollwerk.verschlüsseln(in);
 
-        char reflected = UmkehrWalze.reflektieren(forward3);
 
-        char backwards3 = activeRolle3.rueckwaerts(reflected);
-        char backwards2 = activeRolle2.rueckwaerts(backwards3);
-        char backwards1 = activeRolle1.rueckwaerts(backwards2);
-
-        // Verschiebe die Rollen
-        activeRolle1.incrementPosition();
-        if (activeRolle1.getPosition() == 0) {
-            activeRolle2.incrementPosition();
-            if (activeRolle2.getPosition() == 0) {
-                activeRolle3.incrementPosition();
-            }
-        }
-
-        return backwards1;
+        return verschlüsselt;
     }
 }
