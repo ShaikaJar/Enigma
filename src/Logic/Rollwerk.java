@@ -36,9 +36,9 @@ public class Rollwerk {
 
         char reflected = UmkehrWalze.reflektieren(forward3);
 
-        char backwards3 = rolleEins.vorwärts(reflected);
+        char backwards3 = rolleDrei.vorwärts(reflected);
         char backwards2 = rolleZwei.vorwärts(backwards3);
-        char backwards1 = rolleDrei.vorwärts(backwards2);
+        char backwards1 = rolleEins.vorwärts(backwards2);
 
         rückwärtsDrehen();
 
