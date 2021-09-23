@@ -23,8 +23,6 @@ public class Rollwerk {
         char backwards2 = rolleZwei.rückwärts(backwards3);
         char backwards1 = rolleEins.rückwärts(backwards2);
 
-        vorwärtsDrehen();
-
         return backwards1;
     }
 
@@ -40,12 +38,10 @@ public class Rollwerk {
         char backwards2 = rolleZwei.vorwärts(backwards3);
         char backwards1 = rolleEins.vorwärts(backwards2);
 
-        rückwärtsDrehen();
-
         return backwards1;
     }
 
-    private void vorwärtsDrehen(){
+    public void vorwärtsDrehen(){
         rolleEins.incrementPosition();
         if (rolleEins.getPosition() == 0) {
             rolleZwei.incrementPosition();
@@ -55,7 +51,7 @@ public class Rollwerk {
         }
     }
 
-    private void rückwärtsDrehen(){
+    public void rückwärtsDrehen(){
         rolleEins.decrementPosition();
         if (rolleEins.getPosition() == 25) {
             rolleZwei.decrementPosition();

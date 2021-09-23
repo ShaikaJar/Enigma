@@ -1,5 +1,6 @@
 import Logic.Rolle;
 import Logic.Rollwerk;
+import Logic.SteckBrett;
 
 import java.io.*;
 import java.util.Locale;
@@ -13,9 +14,11 @@ public class Enigma {
     private Rollwerk rollwerk;
     private InputStreamReader inputStream;
     private OutputStreamWriter outputStream;
+    private SteckBrett steckBrett;
 
-    public Enigma(Rollwerk rollwerk, InputStreamReader inputStream, OutputStreamWriter outputStream) {
+    public Enigma(Rollwerk rollwerk, SteckBrett steckBrett, InputStreamReader inputStream, OutputStreamWriter outputStream) {
         this.rollwerk = rollwerk;
+        this.steckBrett = steckBrett;
         this.inputStream = inputStream;
         this.outputStream = outputStream;
         Stream.generate(() -> {
@@ -40,6 +43,7 @@ public class Enigma {
     public static void main(String[] args) {
         Enigma enigma = new Enigma(
                         new Rollwerk(Rolle.Rolle1,Rolle.Rolle2,Rolle.Rolle3),
+                        new SteckBrett(),
                         new InputStreamReader(System.in),
                         new OutputStreamWriter(System.out)
         );
@@ -47,9 +51,17 @@ public class Enigma {
     }
 
     public char verschlüsseln(char in) {
-        //Signal durch Logic.Rollwerk schicken
-        char verschlüsselt = rollwerk.verschlüsseln(in);
 
+        //Signal durch Steckbrett schicken
+        char verschlüsselt = steckBrett.tauschen(in);
+
+        //Signal durch Rollwerk schicken
+        verschlüsselt = rollwerk.verschlüsseln(verschlüsselt);
+        //Rollwerk auf nächste Position
+        rollwerk.vorwärtsDrehen();
+
+        //Signal durch Steckbrett schicken
+        verschlüsselt = steckBrett.tauschen(verschlüsselt);
 
         return verschlüsselt;
     }
