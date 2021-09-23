@@ -4,31 +4,45 @@ import Logic.UmkehrWalze;
 import java.util.Scanner;
 
 public class Enigma {
+    //qtiab
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
-        while (true){
-            String next = sc.nextLine();
-            if(next.length() == 1){
-                char c = next.charAt(0);
-                if(c >= 'A' && c <= )
+        verschluesselLoop:
+        while (true) {
+            String input = sc.nextLine().toUpperCase();
+            StringBuilder output = new StringBuilder();
+            for (int i = 0; i < input.length(); i++) {
+                char c = input.charAt(i);
+                if(c == ' '){
+                    output.append(c);
+                } else if((c >= 'A' && c <= 'Z')){
+                    output.append(verschlüsseln(c));
+                }
+                else{
+                    System.out.println("Ungültige eingabe programm beendet");
+                    break verschluesselLoop;
+                }
             }
-            System.out.println();
+
+            System.out.println("Verschlüsselt: " + input +" zu " + output);
+
         }
+        System.out.println();
     }
+
 
     public static Rolle activeRolle1 = Rolle.Rolle1;
     public static Rolle activeRolle2 = Rolle.Rolle2;
     public static Rolle activeRolle3 = Rolle.Rolle3;
 
-    public static UmkehrWalze umkehrWalze = new UmkehrWalze();
-
-    public static char verschlüsseln(char in){
+    public static char verschlüsseln(char in) {
         // Verschlüssel den char
         char forward1 = activeRolle1.forwaerts(in);
         char forward2 = activeRolle2.forwaerts(forward1);
         char forward3 = activeRolle3.forwaerts(forward2);
 
-        char reflected = umkehrWalze.reflektieren(forward3);
+        char reflected = UmkehrWalze.reflektieren(forward3);
 
         char backwards3 = activeRolle3.rueckwaerts(reflected);
         char backwards2 = activeRolle2.rueckwaerts(backwards3);
@@ -36,9 +50,9 @@ public class Enigma {
 
         // Verschiebe die Rollen
         activeRolle1.incrementPosition();
-        if(activeRolle1.getPosition() == 0){
+        if (activeRolle1.getPosition() == 0) {
             activeRolle2.incrementPosition();
-            if(activeRolle2.getPosition() == 0){
+            if (activeRolle2.getPosition() == 0) {
                 activeRolle3.incrementPosition();
             }
         }
