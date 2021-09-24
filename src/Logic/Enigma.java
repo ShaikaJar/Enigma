@@ -51,6 +51,8 @@ public class Enigma {
         //Signal durch Steckbrett schicken
         verschlüsselt = steckBrett.tauschen(verschlüsselt);
 
+        System.out.println(in+"->"+verschlüsselt);
+
         return verschlüsselt;
     }
 }
