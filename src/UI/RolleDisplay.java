@@ -36,7 +36,7 @@ public class RolleDisplay extends Group {
     }
 
     private String text(int pos){
-        return (pos>=10?"":"0")+pos;
+        return (char)(pos+'A')+"";
     }
 
 
