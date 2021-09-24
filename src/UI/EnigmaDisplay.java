@@ -1,21 +1,14 @@
 package UI;
 
-import Logic.Enigma;
-import Logic.Rolle;
-import Logic.Rollwerk;
-import Logic.SteckBrett;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.*;
 
-public class EnigmaInterface extends Application {
+public class EnigmaDisplay extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -24,7 +17,7 @@ public class EnigmaInterface extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("EnigmaInterface.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EnigmaDisplay.fxml"));
         primaryStage.setTitle("Enigma");
 
         Scene scene = new Scene(root, 450, 320);
