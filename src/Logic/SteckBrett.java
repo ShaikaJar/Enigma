@@ -5,7 +5,12 @@ import java.util.stream.IntStream;
 public class SteckBrett {
     private static final int toChar = 'A';
 
-    private int[] wiring = IntStream.range(0,26).toArray();
+    public static void main(String[] args) {
+        SteckBrett bret = new SteckBrett();
+        IntStream.range('A','Z'+1).forEach(value -> System.out.printf("In: %d  , Out: %d\n",value, (int)bret.tauschen((char)value)));
+    }
+
+    private int[] wiring = IntStream.range('A','Z'+1).toArray();
 
     /**
      *
@@ -41,7 +46,7 @@ public class SteckBrett {
      * @return Das Zeichen, mit dem der Input verbunden ist
      */
     public char tauschen(char input){
-        return (char) ((char) (wiring[(input - toChar +wiring.length) % wiring.length])+toChar);
+        return (char)wiring[input-toChar];
     }
 
 
