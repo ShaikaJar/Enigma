@@ -6,11 +6,7 @@ import Logic.Rollwerk;
 import Logic.SteckBrett;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-
-import java.security.Key;
-import java.util.Arrays;
 
 public class EnigmaController {
     public static EnigmaController instance;
@@ -20,17 +16,21 @@ public class EnigmaController {
     Group out;
     @FXML
     Group in;
+    @FXML
+    Group rolle;
 
     KeyboardDisplay displayIn;
     KeyboardDisplay displayOut;
 
+    RolleDisplay rolleDisplay;
+
 
     @FXML
     private void initialize(){
-        displayIn = new KeyboardDisplay(40,10);
-        in.getChildren().add(displayIn);
-        displayOut = new KeyboardDisplay(40,140);
-        out.getChildren().add(displayOut);
+        in.getChildren().add(displayIn = new KeyboardDisplay());
+        out.getChildren().add(displayOut = new KeyboardDisplay());
+        rolle.getChildren().add(rolleDisplay = new RolleDisplay(enigma.getRollenPositionen()));
+
     }
 
     public EnigmaController() {
@@ -67,6 +67,7 @@ public class EnigmaController {
         displayIn.setActive(activeInput);
         //getButtonIdenty((char) activeInput).setStyle(activeStyle);
         //getButton((char) activeChar).setStyle(activeStyle);
+        rolleDisplay.update(enigma.getRollenPositionen());
     }
 
     public void handleRelease(KeyEvent keyEvent){

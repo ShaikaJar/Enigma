@@ -26,7 +26,8 @@ public class EnigmaInterface extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("EnigmaInterface.fxml"));
         primaryStage.setTitle("Enigma");
-        Scene scene = new Scene(root, 450, 280);
+
+        Scene scene = new Scene(root, 450, 320);
         primaryStage.setScene(scene);
 
         primaryStage.setResizable(false);

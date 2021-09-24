@@ -11,13 +11,10 @@
             fx:controller="UI.EnigmaController"
             prefHeight="500.0" prefWidth="500.0">
 
-    <Group fx:id="out">
+    <Group fx:id="in" layoutX="40" layoutY="10"/>
 
-    </Group>
+    <Group fx:id="rolle" layoutX="160" layoutY="140"/>
 
-
-    <Group fx:id="in">
-
-    </Group>
+    <Group fx:id="out" layoutX="40" layoutY="180"/>
 
 </AnchorPane>
