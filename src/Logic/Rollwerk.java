@@ -48,9 +48,9 @@ public class Rollwerk {
     public void setRollenPositionen(int[] positionen) {
         if(positionen.length != 3 )
             throw new IllegalArgumentException();
-        rolleEins.setPosition(positionen[0]);
-        rolleZwei.setPosition(positionen[1]);
-        rolleDrei.setPosition(positionen[2]);
+        rolleEins.setPosition(positionen[0]%26);
+        rolleZwei.setPosition(positionen[1]%26);
+        rolleDrei.setPosition(positionen[2]%26);
     }
 
 }

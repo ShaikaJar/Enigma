@@ -33,8 +33,13 @@ public class EnigmaController {
     private void initialize(){
         in.getChildren().add(displayIn = new KeyboardDisplay());
         out.getChildren().add(displayOut = new KeyboardDisplay());
-        rolle.getChildren().add(rolleDisplay = new RolleDisplay(enigma.getRollenPositionen()));
+        rolle.getChildren().add(rolleDisplay = new RolleDisplay(enigma.getRollenPositionen(), this::onSetRollPos));
         steckBrett.getChildren().add(steckDisplay = new SteckDisplay(enigma::ausstecken, enigma::einstecken));
+    }
+
+    private void onSetRollPos(int[] pos){
+        enigma.setPositionen(pos);
+        rolleDisplay.update(enigma.getRollenPositionen());
     }
 
     public EnigmaController() {
@@ -72,10 +77,6 @@ public class EnigmaController {
         //getButtonIdenty((char) activeInput).setStyle(activeStyle);
         //getButton((char) activeChar).setStyle(activeStyle);
         rolleDisplay.update(enigma.getRollenPositionen());
-        rolleDisplay.setOnReset(mouseEvent -> {
-            enigma.setPositionen(new int[]{0,0,0});
-            rolleDisplay.update(enigma.getRollenPositionen());
-        });
     }
 
     public void handleRelease(KeyEvent keyEvent){
