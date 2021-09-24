@@ -55,4 +55,8 @@ public class Enigma {
 
         return verschlüsselt;
     }
+
+    public int[] getRollenPositionen(){
+        return rollwerk.getRollenPositionen();
+    }
 }

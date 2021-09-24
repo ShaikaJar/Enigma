@@ -61,4 +61,12 @@ public class Rollwerk {
         }
     }
 
+    public int[] getRollenPositionen(){
+        return new int[]{
+                rolleEins.getPosition(),
+                rolleZwei.getPosition(),
+                rolleDrei.getPosition(),
+        };
+    }
+
 }
