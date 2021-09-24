@@ -30,44 +30,49 @@ public class Rolle {
         this.position = position%wiring.length;
     }
 
-    public char vorwärts(char c) {
-        return (char) (runThrough(c - toChar, true) + toChar);
+    public char vorwärts(char input) {
+        return (char) (runThrough(input , true));
     }
 
-    public char rückwärts(char c) {
-        return (char) (runThrough(c - toChar, false) + toChar);
+    public char rückwärts(char input) {
+        return (char) (runThrough(input , false));
     }
 
     private static final int toChar = 'A';
-    private int[] wiring;
+    private char[] wiring;
     private int position = 0;
 
     private Rolle(int rotorNumber, int rotorPosition) {
         position = rotorPosition;
         switch (rotorNumber) {
             case 0:
-                wiring = new int[]{15, 4, 25 , 20 , 14 , 7 , 23 , 18 , 2 , 21 , 5 , 12 , 19 , 1 , 6 , 11 , 17 , 8 , 13 , 16 , 9 , 22 , 0 , 24 , 3 , 10 };
+                wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ".toCharArray();
                 break;
             case 1:
-                wiring = new int[]{25, 14, 20 , 4 , 18 , 24 , 3 , 10 , 5 , 22 , 15 , 2 , 8 , 16 , 23 , 7 , 12 , 21 , 1 , 11 , 6 , 13 , 9 , 17 , 0 , 19 };
+                wiring = "AJDKSIRUXBLHWTMCQGZNPYFVOE".toCharArray();
                 break;
             case 2:
-                wiring = new int[]{4, 7, 17 , 21 , 23 , 6 , 0 , 14 , 1 , 16 , 20 , 18 , 8 , 12 , 25 , 5 , 11 , 24 , 13 , 22 , 10 , 19 , 15 , 3 , 9 , 2 };
+                wiring = "BDFHJLCPRTXVZNYEIWGAKMUSQO".toCharArray();
                 break;
             case 3:
-                wiring = new int[]{8, 12, 4 , 19 , 2 , 6 , 5 , 17 , 0 , 24 , 18 , 16 , 1 , 25 , 23 , 22 , 11 , 7 , 10 , 3 , 21 , 20 , 15 , 14 , 9 , 13 };
+                wiring = "ESOVPZJAYQUIRHXLNFTGKDCMWB".toCharArray();
                 break;
             case 4:
-                wiring = new int[]{16, 22, 4 , 17 , 19 , 25 , 20 , 8 , 14 , 0 , 18 , 3 , 5 , 6 , 7 , 9 , 10 , 15 , 24 , 23 , 2 , 21 , 1 , 13 , 12 , 11 };
+                wiring = "VZBRGITYUPSDNHLXAWMJQOFECK".toCharArray();
                 break;
         }
     }
 
-    private int runThrough(int input, boolean forward) {
+    private int runThrough(char character, boolean forward) {
         if (forward) {
+            int input = character-toChar;
             return wiring[(input+position+wiring.length)%wiring.length];
         } else {
-            return (char) Arrays.stream(wiring).filter(i -> input == wiring[i]).findFirst().orElse(-1);
+            for (int i = 0; i < wiring.length; i++) {
+                if(wiring[i] == character)
+                    return (char)(i+toChar);
+            }
         }
+        return 'A'-1;
     }
 }
