@@ -68,6 +68,10 @@ public class EnigmaController {
         //getButtonIdenty((char) activeInput).setStyle(activeStyle);
         //getButton((char) activeChar).setStyle(activeStyle);
         rolleDisplay.update(enigma.getRollenPositionen());
+        rolleDisplay.setOnReset(mouseEvent -> {
+            enigma.setPositionen(new int[]{0,0,0});
+            rolleDisplay.update(enigma.getRollenPositionen());
+        });
     }
 
     public void handleRelease(KeyEvent keyEvent){
