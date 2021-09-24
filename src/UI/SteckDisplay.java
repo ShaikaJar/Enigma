@@ -3,7 +3,9 @@ package UI;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 
+import java.awt.*;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.UnaryOperator;
 
@@ -61,8 +63,8 @@ public class SteckDisplay extends Group {
             for (int j = 0; j < buttons[i].length; j++) {
                 char character = buttons[i][j].getText().charAt(0);
                 buttons[i][j].setOnMouseClicked(mouseEvent -> handleClick(character));
-                buttons[i][j].setLayoutX((40 * i));
-                buttons[i][j].setLayoutY(40 * j);
+                buttons[i][j].setLayoutX((40 * i) );
+                buttons[i][j].setLayoutY(40 * j+(20*(i%2)));
                 buttons[i][j].setStyle(inActiveStyle);
                 buttons[i][j].setVisible(true);
                 this.getChildren().add(buttons[i][j]);
@@ -74,7 +76,17 @@ public class SteckDisplay extends Group {
 
     private static String getColor(char a, char b){
         int code = a*b * (a+b);
-        String hex = Integer.toHexString(code);
+        Random rnd = new Random(code);
+
+        Color color = Color.getHSBColor(rnd.nextFloat(), 0.8f, 0.8f);
+
+        int red = color.getRed();
+        int green =color.getGreen();
+        int blue= color.getBlue();
+
+        String hex = String.format("%02X%02X%02X", red, green, blue);
+
+        System.out.println("Hex:"+hex);
         return "-fx-background-color: #"+hex.substring(2)+";";
     }
 
@@ -105,11 +117,14 @@ public class SteckDisplay extends Group {
 
     public void connect(char input, char other) {
 
+
+        //Verbindungen löschen
+        disconnect(input);
+        disconnect(other);
+
         //neue verbindung anlegen
         onConnect.accept(input,other);
 
-        //Verbindungen löschen
-        disconnectDisplay(input, other);
 
         //Falls neue verbindung etabliert wurde, anzeigen
         if(input != other) {
