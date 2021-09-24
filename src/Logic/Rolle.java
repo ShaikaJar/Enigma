@@ -64,6 +64,7 @@ public class Rolle {
     }
 
     private int runThrough(char character, boolean forward) {
+        character = Character.toUpperCase(character);
         if (forward) {
             int input = character-toChar;
             return wiring[(input+position+wiring.length)%wiring.length];

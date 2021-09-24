@@ -11,7 +11,7 @@ public class Rollwerk {
         this.rolleDrei = rolleDrei;
     }
 
-    public char verschlüsseln(char input){
+    public char verschlüsseln(char input) {
         // Verschlüssel den char
         char forward1 = rolleEins.vorwärts(input);
         char forward2 = rolleZwei.vorwärts(forward1);
@@ -26,7 +26,7 @@ public class Rollwerk {
         return backwards1;
     }
 
-    public char entschlüsseln(char input){
+    public char entschlüsseln(char input) {
         // Verschlüssel den char
         char forward1 = rolleEins.rückwärts(input);
         char forward2 = rolleZwei.rückwärts(forward1);
@@ -41,7 +41,7 @@ public class Rollwerk {
         return backwards1;
     }
 
-    public void vorwärtsDrehen(){
+    public void vorwärtsDrehen() {
         rolleEins.incrementPosition();
         if (rolleEins.getPosition() == 0) {
             rolleZwei.incrementPosition();
@@ -51,7 +51,7 @@ public class Rollwerk {
         }
     }
 
-    public void rückwärtsDrehen(){
+    public void rückwärtsDrehen() {
         rolleEins.decrementPosition();
         if (rolleEins.getPosition() == 25) {
             rolleZwei.decrementPosition();
@@ -61,12 +61,20 @@ public class Rollwerk {
         }
     }
 
-    public int[] getRollenPositionen(){
+    public int[] getRollenPositionen() {
         return new int[]{
                 rolleEins.getPosition(),
                 rolleZwei.getPosition(),
                 rolleDrei.getPosition(),
         };
+    }
+
+    public void setRollenPositionen(int[] positionen) {
+        if(positionen.length != 3 )
+            throw new IllegalArgumentException();
+        rolleEins.setPosition(positionen[0]);
+        rolleZwei.setPosition(positionen[1]);
+        rolleDrei.setPosition(positionen[2]);
     }
 
 }

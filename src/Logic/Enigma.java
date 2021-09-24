@@ -40,6 +40,8 @@ public class Enigma {
 
     public char verschlüsseln(char in) {
 
+        in = Character.toUpperCase(in);
+
         //Signal durch Steckbrett schicken
         char verschlüsselt = steckBrett.tauschen(in);
 
@@ -58,5 +60,9 @@ public class Enigma {
 
     public int[] getRollenPositionen(){
         return rollwerk.getRollenPositionen();
+    }
+
+    public void setPositionen(int[] positionen){
+        rollwerk.setRollenPositionen(positionen);
     }
 }
