@@ -4,7 +4,7 @@ public class Rollwerk {
     private Rolle rolleEins;
     private Rolle rolleZwei;
     private Rolle rolleDrei;
-    private UmkehrWalze umkehrWalze = new UmkehrWalze();
+    private UmkehrWalze umkehrWalze = UmkehrWalze.UMKEHR_WALZE_A;
 
     public Rollwerk(Rolle rolleEins, Rolle rolleZwei, Rolle rolleDrei) {
         this.rolleEins = rolleEins;
