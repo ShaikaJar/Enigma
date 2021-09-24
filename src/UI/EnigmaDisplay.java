@@ -20,7 +20,7 @@ public class EnigmaDisplay extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("EnigmaDisplay.fxml"));
         primaryStage.setTitle("Enigma");
 
-        Scene scene = new Scene(root, 450, 320);
+        Scene scene = new Scene(root, 620, 320);
         primaryStage.setScene(scene);
 
         primaryStage.setResizable(false);

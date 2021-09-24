@@ -17,4 +17,6 @@
 
     <Group fx:id="out" layoutX="40" layoutY="180"/>
 
+    <Group fx:id="steckBrett" layoutX="450" layoutY="10"/>
+
 </AnchorPane>

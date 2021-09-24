@@ -26,6 +26,7 @@ public class SteckBrett {
         ausstecken(steckerZwei);
         wiring[steckerEins-toChar] = steckerZwei;
         wiring[steckerZwei-toChar] = steckerEins;
+        System.out.println(steckerEins+"<->"+steckerZwei);
     }
 
 
@@ -38,6 +39,7 @@ public class SteckBrett {
         char other = (char)wiring[stecker-toChar];
         wiring[other-toChar]=other;
         wiring[stecker-toChar]= stecker;
+        System.out.println(stecker+"<- | ->"+other);
         return other;
     }
 

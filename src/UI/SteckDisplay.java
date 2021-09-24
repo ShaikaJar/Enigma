@@ -23,6 +23,7 @@ public class SteckDisplay extends Group {
                             new Button("E"),
                             new Button("F"),
                             new Button("G"),
+                    },{
                             new Button("H"),
                             new Button("I"),
                             new Button("J"),
@@ -37,6 +38,7 @@ public class SteckDisplay extends Group {
                             new Button("R"),
                             new Button("S"),
                             new Button("T"),
+                    },{
                             new Button("U"),
                             new Button("V"),
                             new Button("W"),
@@ -51,14 +53,19 @@ public class SteckDisplay extends Group {
     UnaryOperator<Character> onDisconnect;
     BiConsumer<Character, Character> onConnect;
 
+    public SteckDisplay(UnaryOperator<Character> onDisconnect, BiConsumer<Character, Character> onConnect) {
+        this.onDisconnect = onDisconnect;
+        this.onConnect = onConnect;
 
-    public SteckDisplay() {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 char character = buttons[i][j].getText().charAt(0);
                 buttons[i][j].setOnMouseClicked(mouseEvent -> handleClick(character));
-                buttons[i][j].setLayoutX((40 * j));
-                buttons[i][j].setLayoutY(40 * i);
+                buttons[i][j].setLayoutX((40 * i));
+                buttons[i][j].setLayoutY(40 * j);
+                buttons[i][j].setStyle(inActiveStyle);
+                buttons[i][j].setVisible(true);
+                this.getChildren().add(buttons[i][j]);
             }
         }
     }
@@ -83,9 +90,12 @@ public class SteckDisplay extends Group {
     }
 
     private void handleClick(char character){
-        if(active == 'A'-1){
+        if(active != 'A'-1){
             //Falls berits ein Knopf aktiv ist
-            connect(character, active);
+            if(character == active)
+                disconnect(active);
+            else
+                connect(character, active);
         }else{
             active = character;
             getButton(active).ifPresent(button -> button.setStyle(activeStyle));
@@ -95,12 +105,11 @@ public class SteckDisplay extends Group {
 
     public void connect(char input, char other) {
 
-        //Verbindungen + Anzeige löschen
-        disconnect(input);
-        disconnect(other);
-
         //neue verbindung anlegen
         onConnect.accept(input,other);
+
+        //Verbindungen löschen
+        disconnectDisplay(input, other);
 
         //Falls neue verbindung etabliert wurde, anzeigen
         if(input != other) {
@@ -114,10 +123,12 @@ public class SteckDisplay extends Group {
 
     public void disconnect(char input) {
         char other = onDisconnect.apply(input);
+        disconnectDisplay(input, other);
+    }
 
-        getButton(input).ifPresent(button -> button.setStyle(inActiveStyle));
-        getButton(other).ifPresent(button -> button.setStyle(inActiveStyle));
-
+    public void disconnectDisplay(char one, char two){
+        getButton(one).ifPresent(button -> button.setStyle(inActiveStyle));
+        getButton(two).ifPresent(button -> button.setStyle(inActiveStyle));
         active = 'A'-1;
     }
 

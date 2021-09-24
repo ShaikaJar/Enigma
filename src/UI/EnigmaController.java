@@ -18,11 +18,15 @@ public class EnigmaController {
     Group in;
     @FXML
     Group rolle;
+    @FXML
+    Group steckBrett;
 
     KeyboardDisplay displayIn;
     KeyboardDisplay displayOut;
 
     RolleDisplay rolleDisplay;
+
+    SteckDisplay steckDisplay;
 
 
     @FXML
@@ -30,7 +34,7 @@ public class EnigmaController {
         in.getChildren().add(displayIn = new KeyboardDisplay());
         out.getChildren().add(displayOut = new KeyboardDisplay());
         rolle.getChildren().add(rolleDisplay = new RolleDisplay(enigma.getRollenPositionen()));
-
+        steckBrett.getChildren().add(steckDisplay = new SteckDisplay(enigma::ausstecken, enigma::einstecken));
     }
 
     public EnigmaController() {
