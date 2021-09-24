@@ -70,7 +70,7 @@ public class Rolle {
             return wiring[(input+position+wiring.length)%wiring.length];
         } else {
             for (int i = 0; i < wiring.length; i++) {
-                if(wiring[i] == character)
+                if(wiring[(i+position)%wiring.length] == character)
                     return (char)(i+toChar);
             }
         }
