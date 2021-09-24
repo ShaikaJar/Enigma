@@ -19,13 +19,13 @@ public class SteckBrett {
      * @param steckerEins Erster Stecker
      * @param steckerZwei Zweiter Stecker
      *
-     * @see SteckBrett#ausstecken(int)
+     * @see SteckBrett#ausstecken(char)
      * **/
-    public void einstecken(int steckerEins, int steckerZwei){
+    public void einstecken(char steckerEins, char steckerZwei){
         ausstecken(steckerEins);
         ausstecken(steckerZwei);
-        wiring[steckerEins] = steckerZwei;
-        wiring[steckerZwei] = steckerEins;
+        wiring[steckerEins-toChar] = steckerZwei;
+        wiring[steckerZwei-toChar] = steckerEins;
     }
 
 
@@ -34,10 +34,11 @@ public class SteckBrett {
      *
      * @param stecker Stecker, dessen Verbindung getrennt wird
      * **/
-    public void ausstecken(int stecker){
-        int other = wiring[stecker];
-        wiring[other]=other;
-        wiring[stecker]= stecker;
+    public char ausstecken(char stecker){
+        char other = (char)wiring[stecker-toChar];
+        wiring[other-toChar]=other;
+        wiring[stecker-toChar]= stecker;
+        return other;
     }
 
     /**

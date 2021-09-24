@@ -38,6 +38,14 @@ public class Enigma {
 
     }
 
+    public char ausstecken(char stecker){
+        return steckBrett.ausstecken(stecker);
+    }
+
+    public void einstecken(char steckerEins, char steckerZwei){
+        steckBrett.einstecken(steckerEins,steckerZwei);
+    }
+
     public char verschlüsseln(char in) {
 
         in = Character.toUpperCase(in);
