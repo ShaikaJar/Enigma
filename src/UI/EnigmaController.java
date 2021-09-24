@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 
 public class EnigmaController {
     public static EnigmaController instance;
-    private Enigma enigma;
+    private final Enigma enigma;
 
     @FXML
     Group out;

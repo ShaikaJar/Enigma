@@ -2,14 +2,14 @@ package Logic;
 
 import java.util.Arrays;
 
-public class Rolle {
+public enum Rolle {
 
 
-    public static final Rolle Rolle1 = new Rolle(0,0);
-    public static final Rolle Rolle2 = new Rolle(1,0);
-    public static final Rolle Rolle3 = new Rolle(2,0);
-    public static final Rolle Rolle4 = new Rolle(3,0);
-    public static final Rolle Rolle5 = new Rolle(4,0);
+    Rolle1(0,0),
+    Rolle2(1,0),
+    Rolle3(2,0),
+    Rolle4(3,0),
+    Rolle5(4,0);
 
 
     public int incrementPosition() {
