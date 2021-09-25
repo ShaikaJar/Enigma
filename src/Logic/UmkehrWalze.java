@@ -2,7 +2,7 @@ package Logic;
 
 public class UmkehrWalze {
 
-    static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze("EJMZALYXVBWFCRQUONTSPIKHGD".toCharArray());
+    static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze(WiringTemplate.umkehrwalzen[0]);
 
     private final int toChar = 'A';
     private final char[] wiring;

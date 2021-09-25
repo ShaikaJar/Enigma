@@ -5,14 +5,19 @@ import java.util.Arrays;
 public class Rolle {
 
 
-    static final Rolle Rolle1 = new Rolle(0,0);
-    static final Rolle Rolle2 = new Rolle(2,0);
-    static final Rolle Rolle3 = new Rolle(3,0);
-    static final Rolle Rolle4= new Rolle(4,0);
-    static final Rolle Rolle5 = new Rolle(5,0);
+    static final Rolle Rolle1 = new Rolle(WiringTemplate.rollen[0],0);
+    static final Rolle Rolle2 = new Rolle(WiringTemplate.rollen[2],0);
+    static final Rolle Rolle3 = new Rolle(WiringTemplate.rollen[3],0);
+    static final Rolle Rolle4= new Rolle(WiringTemplate.rollen[4],0);
+    static final Rolle Rolle5 = new Rolle(WiringTemplate.rollen[5],0);
 
 
-    public int incrementPosition() {
+    private Rolle(char[] wiring, int rotorPosition) {
+        position = rotorPosition;
+    }
+
+
+    public int drehen() {
         position = (position+1)%wiring.length;
         return position;
     }
@@ -37,26 +42,6 @@ public class Rolle {
     private char[] wiring;
     private int position = 0;
 
-    private Rolle(int rotorNumber, int rotorPosition) {
-        position = rotorPosition;
-        switch (rotorNumber) {
-            case 0:
-                wiring = "EKMFLGDQVZNTOWYHXUSPAIBRCJ".toCharArray();
-                break;
-            case 1:
-                wiring = "AJDKSIRUXBLHWTMCQGZNPYFVOE".toCharArray();
-                break;
-            case 2:
-                wiring = "BDFHJLCPRTXVZNYEIWGAKMUSQO".toCharArray();
-                break;
-            case 3:
-                wiring = "ESOVPZJAYQUIRHXLNFTGKDCMWB".toCharArray();
-                break;
-            case 4:
-                wiring = "VZBRGITYUPSDNHLXAWMJQOFECK".toCharArray();
-                break;
-        }
-    }
 
     private int runThrough(char character, boolean forward) {
         character = Character.toUpperCase(character);

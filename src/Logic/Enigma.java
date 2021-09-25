@@ -1,8 +1,6 @@
 package Logic;
 
-import java.io.*;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Enigma {
 
@@ -56,7 +54,7 @@ public class Enigma {
         //Signal durch Rollwerk schicken
         verschlüsselt = rollwerk.verschlüsseln(verschlüsselt);
         //Rollwerk auf nächste Position
-        rollwerk.vorwärtsDrehen();
+        rollwerk.drehen();
 
         //Signal durch Steckbrett schicken
         verschlüsselt = steckBrett.tauschen(verschlüsselt);
