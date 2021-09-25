@@ -1,8 +1,8 @@
 package Logic;
 
-public enum UmkehrWalze {
+public class UmkehrWalze {
 
-    UMKEHR_WALZE_A("EJMZALYXVBWFCRQUONTSPIKHGD".toCharArray());
+    static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze("EJMZALYXVBWFCRQUONTSPIKHGD".toCharArray());
 
     private final int toChar = 'A';
     private final char[] wiring;
