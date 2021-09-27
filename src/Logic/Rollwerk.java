@@ -1,10 +1,9 @@
 package Logic;
 
 public class Rollwerk {
-    private Rolle rolle1;
-    private Rolle rolle2;
-    private Rolle rolle3;
-    private UmkehrWalze umkehrWalze = UmkehrWalze.UMKEHR_WALZE_A;
+    //Todo: Rollen definieren
+
+    //Todo: Umkehrwalze definieren
 
     /**
      * Ein Rollwerk mit drei ausgewählten Rollen, die in der angegebenen Reihenfolge zur Verschlüsselung benutzt werden
@@ -13,9 +12,9 @@ public class Rollwerk {
      * @param rolle3 Dritte Rolle
      */
     public Rollwerk(Rolle rolle1, Rolle rolle2, Rolle rolle3) {
-        this.rolle1 = rolle1;
-        this.rolle2 = rolle2;
-        this.rolle3 = rolle3;
+        //Todo: Rollen speichern
+
+        //Todo: Umkehrwalze anlegen
     }
 
     /**
@@ -24,21 +23,14 @@ public class Rollwerk {
      * @return Ergebnis der Verschlüsselung
      */
     public char verschlüsseln(char eingabe) {
+        //Todo: vorwärts durch alle Rollen
 
-        //vorwärts durch alle Rollen
-        char vorwärts1 = rolle1.vorwärts(eingabe);
-        char vorwärts2 = rolle2.vorwärts(vorwärts1);
-        char vorwärts3 = rolle3.vorwärts(vorwärts2);
+        //Todo: Umdrehen in UmkehrWalze
 
-        //Umdrehen in UmkehrWalze
-        char umgedreht = umkehrWalze.reflektieren(vorwärts3);
+        //Todo: Rückwärts durch alle Rollen
 
-        //Rückwärts durch alle Rollen
-        char rückwärts3 = rolle3.rückwärts(umgedreht);
-        char rückwärts2 = rolle2.rückwärts(rückwärts3);
-        char rückwärts1 = rolle1.rückwärts(rückwärts2);
-
-        return rückwärts1;
+        //Todo: Verschlüsseltes Zeichen zurückgeben
+        return eingabe;
     }
 
     /**
@@ -48,13 +40,7 @@ public class Rollwerk {
      * Hat die zweite Rolle eine Umdrehung zurückgelegt, dreht die dritte Rolle sich um eine Position
      */
     public void drehen() {
-        rolle1.drehen();
-        if (rolle1.getPosition() == 0) {
-            rolle2.drehen();
-            if (rolle2.getPosition() == 0) {
-                rolle3.drehen();
-            }
-        }
+        //Todo: Rolle Drehen
     }
 
     /**
@@ -62,11 +48,8 @@ public class Rollwerk {
      * @return Ein Array dessen Werte die Position der zugehörigen Rolle angibt. bsp. array[0] → Erste Rolle
      */
     public int[] getRollenPositionen() {
-        return new int[]{
-                rolle1.getPosition(),
-                rolle2.getPosition(),
-                rolle3.getPosition(),
-        };
+        //Todo: Rollen-Positionen als Array zurückgeben
+        return new int[]{0,0,0};
     }
 
 
@@ -75,11 +58,8 @@ public class Rollwerk {
      * @param positionen  Ein Array dessen Werte die Position der zugehörigen Rolle angibt. bsp. array[0] → Erste Rolle
      */
     public void setRollenPositionen(int[] positionen) {
-        if(positionen.length != 3 )
-            throw new IllegalArgumentException();
-        rolle1.setPosition(positionen[0]%26);
-        rolle2.setPosition(positionen[1]%26);
-        rolle3.setPosition(positionen[2]%26);
+        //Todo: Rollen-Positionen setzen
+        //      Bei einer Array-Länge ungleich 3 soll eine IllegalArgumentException geworfen werden
     }
 
 }
