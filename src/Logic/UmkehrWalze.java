@@ -4,15 +4,15 @@ public class UmkehrWalze {
 
     static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze(VerkabelungsVorlage.umkehrwalzen[0]);
 
-    private final char[] wiring;
+    //Todo: Array für verkabelung definieren
 
 
     /**
      * Umkehrwalze, die Buchstaben tauscht
-     * @param wiring Ein Array, das einem Zeichen nach dessen Position im Alphabet ein Zeichen zuweist, durch das es ersetzt werden soll
+     * @param verkabelung Ein Array, das einem Zeichen nach dessen Position im Alphabet ein Zeichen zuweist, durch das es ersetzt werden soll
      */
-    private UmkehrWalze(char[] wiring) {
-        this.wiring = wiring;
+    private UmkehrWalze(char[] verkabelung) {
+        //Todo: Verkabelung speichern
     }
 
 
@@ -22,6 +22,7 @@ public class UmkehrWalze {
      * @return Zeichen nach Tauschung
      */
     public char reflektieren(char eingabe) {
-        return (wiring[VerkabelungsVorlage.positionImAlphabet(eingabe) % wiring.length]);
+        //Todo: Zeichen ausgeben mit dem Eingabe verkabelt ist
+        return eingabe;
     }
 }

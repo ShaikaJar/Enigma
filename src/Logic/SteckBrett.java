@@ -32,7 +32,7 @@ public class SteckBrett {
         //Todo: Verbundenen Stecker suchen und jeweils mit sich selbst verbinden
 
         //Todo: Vorher verbundenen Stecker zurückgeben
-        return 0;
+        return stecker;
     }
 
     /**
@@ -42,7 +42,7 @@ public class SteckBrett {
      */
     public char tauschen(char eingabe){
         //Todo: Zeichen ausgeben, mit dem die Eingabe verbunden ist
-        return 0;
+        return eingabe;
     }
 
 
