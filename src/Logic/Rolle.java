@@ -3,11 +3,11 @@ package Logic;
 public class Rolle {
 
 
-    public static final Rolle Rolle1 = new Rolle(WiringTemplate.rollen[0]);
-    public static final Rolle Rolle2 = new Rolle(WiringTemplate.rollen[1]);
-    public static final Rolle Rolle3 = new Rolle(WiringTemplate.rollen[2]);
-    public static final Rolle Rolle4= new Rolle(WiringTemplate.rollen[3]);
-    public static final Rolle Rolle5 = new Rolle(WiringTemplate.rollen[4]);
+    public static final Rolle Rolle1 = new Rolle(VerkabelungsVorlage.rollen[0]);
+    public static final Rolle Rolle2 = new Rolle(VerkabelungsVorlage.rollen[1]);
+    public static final Rolle Rolle3 = new Rolle(VerkabelungsVorlage.rollen[2]);
+    public static final Rolle Rolle4= new Rolle(VerkabelungsVorlage.rollen[3]);
+    public static final Rolle Rolle5 = new Rolle(VerkabelungsVorlage.rollen[4]);
 
     /**
      * Eine Rolle, die die angegebene Verkabelung benutzt und in der Stellung 0 startet
@@ -71,12 +71,12 @@ public class Rolle {
     private int runThrough(char character, boolean forward) {
         character = Character.toUpperCase(character);
         if (forward) {
-            int input = WiringTemplate.positionImAlphabet(character);
+            int input = VerkabelungsVorlage.positionImAlphabet(character);
             return verkabelung[(input+position+ verkabelung.length)% verkabelung.length];
         } else {
             for (int i = 0; i < verkabelung.length; i++) {
                 if(verkabelung[(i+position)% verkabelung.length] == character)
-                    return (WiringTemplate.zeichenNachPositionImAlphabet(i));
+                    return (VerkabelungsVorlage.zeichenNachPositionImAlphabet(i));
             }
         }
         return 'A'-1;

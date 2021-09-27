@@ -2,7 +2,7 @@ package Logic;
 
 public class UmkehrWalze {
 
-    static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze(WiringTemplate.umkehrwalzen[0]);
+    static final UmkehrWalze UMKEHR_WALZE_A = new UmkehrWalze(VerkabelungsVorlage.umkehrwalzen[0]);
 
     private final char[] wiring;
 
@@ -22,6 +22,6 @@ public class UmkehrWalze {
      * @return Zeichen nach Tauschung
      */
     public char reflektieren(char eingabe) {
-        return (wiring[WiringTemplate.positionImAlphabet(eingabe) % wiring.length]);
+        return (wiring[VerkabelungsVorlage.positionImAlphabet(eingabe) % wiring.length]);
     }
 }
