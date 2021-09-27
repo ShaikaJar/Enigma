@@ -1,57 +1,82 @@
 package Logic;
 
-import java.util.Arrays;
-
 public class Rolle {
 
 
-    static final Rolle Rolle1 = new Rolle(WiringTemplate.rollen[0],0);
-    static final Rolle Rolle2 = new Rolle(WiringTemplate.rollen[2],0);
-    static final Rolle Rolle3 = new Rolle(WiringTemplate.rollen[3],0);
-    static final Rolle Rolle4= new Rolle(WiringTemplate.rollen[4],0);
-    static final Rolle Rolle5 = new Rolle(WiringTemplate.rollen[5],0);
+    public static final Rolle Rolle1 = new Rolle(WiringTemplate.rollen[0]);
+    public static final Rolle Rolle2 = new Rolle(WiringTemplate.rollen[1]);
+    public static final Rolle Rolle3 = new Rolle(WiringTemplate.rollen[2]);
+    public static final Rolle Rolle4= new Rolle(WiringTemplate.rollen[3]);
+    public static final Rolle Rolle5 = new Rolle(WiringTemplate.rollen[4]);
 
-
-    private Rolle(char[] wiring, int rotorPosition) {
-        position = rotorPosition;
+    /**
+     * Eine Rolle, die die angegebene Verkabelung benutzt und in der Stellung 0 startet
+     * @param verkabelung Ein Array, das die Position der Buchstaben im Alphabet auf einen neuen Buchstaben übersetzt
+     */
+    private Rolle(char[] verkabelung) {
+        this.position = 0;
+        this.verkabelung = verkabelung;
     }
 
 
+    /**
+     * Dreht die Rolle auf die nächste Position
+     * @return Position der Rolle nach Drehung
+     */
     public int drehen() {
-        position = (position+1)%wiring.length;
+        position = (position+1)% verkabelung.length;
         return position;
     }
 
+    /**
+     * @return Position der Rolle
+     */
     public int getPosition() {
         return position;
     }
 
+    /**
+     * @param position Position auf die, die Rolle gesetzt werden soll. Erwarte Wert zwischen 0 (inklusiv) und 26 (exklusiv)
+     * @throws IllegalArgumentException falls die Position nicht im erlaubten bereich liegt
+     */
     public void setPosition(int position) {
-        this.position = position%wiring.length;
+        if(position >=26 || position < 0)
+            throw new IllegalArgumentException("Position liegt nicht zwischen 0 (inklusiv) und 26 (exklusiv)");
+        this.position = position% verkabelung.length;
     }
 
-    public char vorwärts(char input) {
-        return (char) (runThrough(input , true));
+    /**
+     * Schickt ein Signal vorwärts durch die Rolle
+     * @param eingabe Zeichen, das durch die Rolle geschickt werden soll
+     * @return Ergebnis der Verschlüsselung
+     */
+    public char vorwärts(char eingabe) {
+        return (char) (runThrough(eingabe , true));
     }
 
-    public char rückwärts(char input) {
-        return (char) (runThrough(input , false));
+
+    /**
+     * Schickt ein Signal rückwärts durch die Rolle
+     * @param eingabe Zeichen, das durch die Rolle geschickt werden soll
+     * @return Ergebnis der Verschlüsselung
+     */
+    public char rückwärts(char eingabe) {
+        return (char) (runThrough(eingabe , false));
     }
 
-    private static final int toChar = 'A';
-    private char[] wiring;
+    private char[] verkabelung;
     private int position = 0;
 
 
     private int runThrough(char character, boolean forward) {
         character = Character.toUpperCase(character);
         if (forward) {
-            int input = character-toChar;
-            return wiring[(input+position+wiring.length)%wiring.length];
+            int input = WiringTemplate.positionImAlphabet(character);
+            return verkabelung[(input+position+ verkabelung.length)% verkabelung.length];
         } else {
-            for (int i = 0; i < wiring.length; i++) {
-                if(wiring[(i+position)%wiring.length] == character)
-                    return (char)(i+toChar);
+            for (int i = 0; i < verkabelung.length; i++) {
+                if(verkabelung[(i+position)% verkabelung.length] == character)
+                    return (WiringTemplate.zeichenNachPositionImAlphabet(i));
             }
         }
         return 'A'-1;

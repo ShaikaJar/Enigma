@@ -1,59 +1,59 @@
 package Logic;
 
 public class Rollwerk {
-    private Rolle rolleEins;
-    private Rolle rolleZwei;
-    private Rolle rolleDrei;
+    private Rolle rolle1;
+    private Rolle rolle2;
+    private Rolle rolle3;
     private UmkehrWalze umkehrWalze = UmkehrWalze.UMKEHR_WALZE_A;
 
-    public Rollwerk(Rolle rolleEins, Rolle rolleZwei, Rolle rolleDrei) {
-        this.rolleEins = rolleEins;
-        this.rolleZwei = rolleZwei;
-        this.rolleDrei = rolleDrei;
+    public Rollwerk(Rolle rolle1, Rolle rolle2, Rolle rolle3) {
+        this.rolle1 = rolle1;
+        this.rolle2 = rolle2;
+        this.rolle3 = rolle3;
     }
 
-    public char verschlüsseln(char input) {
+    public char verschlüsseln(char eingabe) {
 
         //vorwärts durch alle Rollen
-        char forward1 = rolleEins.vorwärts(input);
-        char forward2 = rolleZwei.vorwärts(forward1);
-        char forward3 = rolleDrei.vorwärts(forward2);
+        char vorwärts1 = rolle1.vorwärts(eingabe);
+        char vorwärts2 = rolle2.vorwärts(vorwärts1);
+        char vorwärts3 = rolle3.vorwärts(vorwärts2);
 
         //Umdrehen in Umkehrwalze
-        char reflected = umkehrWalze.reflektieren(forward3);
+        char umgedreht = umkehrWalze.reflektieren(vorwärts3);
 
         //Rückwärts durch alle Rollen
-        char backwards3 = rolleDrei.rückwärts(reflected);
-        char backwards2 = rolleZwei.rückwärts(backwards3);
-        char backwards1 = rolleEins.rückwärts(backwards2);
+        char rückwärts3 = rolle3.rückwärts(umgedreht);
+        char rückwärts2 = rolle2.rückwärts(rückwärts3);
+        char rückwärts1 = rolle1.rückwärts(rückwärts2);
 
-        return backwards1;
+        return rückwärts1;
     }
 
     public void drehen() {
-        rolleEins.drehen();
-        if (rolleEins.getPosition() == 0) {
-            rolleZwei.drehen();
-            if (rolleZwei.getPosition() == 0) {
-                rolleDrei.drehen();
+        rolle1.drehen();
+        if (rolle1.getPosition() == 0) {
+            rolle2.drehen();
+            if (rolle2.getPosition() == 0) {
+                rolle3.drehen();
             }
         }
     }
 
     public int[] getRollenPositionen() {
         return new int[]{
-                rolleEins.getPosition(),
-                rolleZwei.getPosition(),
-                rolleDrei.getPosition(),
+                rolle1.getPosition(),
+                rolle2.getPosition(),
+                rolle3.getPosition(),
         };
     }
 
     public void setRollenPositionen(int[] positionen) {
         if(positionen.length != 3 )
             throw new IllegalArgumentException();
-        rolleEins.setPosition(positionen[0]%26);
-        rolleZwei.setPosition(positionen[1]%26);
-        rolleDrei.setPosition(positionen[2]%26);
+        rolle1.setPosition(positionen[0]%26);
+        rolle2.setPosition(positionen[1]%26);
+        rolle3.setPosition(positionen[2]%26);
     }
 
 }

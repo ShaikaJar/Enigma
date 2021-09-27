@@ -17,7 +17,7 @@ public class EnigmaDisplay extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("EnigmaDisplay.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EnigmaController.fxml"));
         primaryStage.setTitle("Enigma");
 
         Scene scene = new Scene(root, 620, 320);

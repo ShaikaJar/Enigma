@@ -5,11 +5,16 @@ import java.util.Scanner;
 public class Enigma {
 
 
-    private Rollwerk rollwerk;
+    private Rollwerk rollWerk;
     private SteckBrett steckBrett;
 
-    public Enigma(Rollwerk rollwerk, SteckBrett steckBrett) {
-        this.rollwerk = rollwerk;
+    /**
+     * Eine Enigma, die das gegebene Rollwerk und Steckbrett verwendet
+     * @param rollWerk Rollwerk, das zur Verschlüsselung benutzt werden soll
+     * @param steckBrett Steckbrett, das zur Verschlüsselung benutzt werden soll
+     */
+    public Enigma(Rollwerk rollWerk, SteckBrett steckBrett) {
+        this.rollWerk = rollWerk;
         this.steckBrett = steckBrett;
     }
 
@@ -36,39 +41,68 @@ public class Enigma {
 
     }
 
+
+    /**
+     *
+     * @param stecker Stecker der ausgesteckt werden soll
+     * @return Der Stecker mit dem der gegebene Stecker verbunden war. Falls ungesteckert der Stecker selbst
+     */
     public char ausstecken(char stecker){
         return steckBrett.ausstecken(stecker);
     }
 
-    public void einstecken(char steckerEins, char steckerZwei){
-        steckBrett.einstecken(steckerEins,steckerZwei);
+
+    /**
+     *
+     * Beide Stecker werden miteinander verbunden
+     *
+     * @param stecker1 Erster Stecker
+     * @param stecker2 Zweiter Stecker
+     */
+    public void einstecken(char stecker1, char stecker2){
+        steckBrett.einstecken(stecker1,stecker2);
     }
 
-    public char verschlüsseln(char in) {
+    /**
+     * Verschlüsselt einen Charakter, indem es ihn zunächst vorwärts durch alle Rollen schickt,
+     * dann durch die Umkehrwalze und dann rückwärts durch alle rollen
+     * @param eingabe Der Charakter der verschlüsselt werden soll
+     * @return Ergebnis der Verschlüsselung
+     */
+    public char verschlüsseln(char eingabe) {
 
-        in = Character.toUpperCase(in);
+        eingabe = Character.toUpperCase(eingabe);
 
         //Signal durch Steckbrett schicken
-        char verschlüsselt = steckBrett.tauschen(in);
+        char verschlüsselt = steckBrett.tauschen(eingabe);
 
         //Signal durch Rollwerk schicken
-        verschlüsselt = rollwerk.verschlüsseln(verschlüsselt);
+        verschlüsselt = rollWerk.verschlüsseln(verschlüsselt);
         //Rollwerk auf nächste Position
-        rollwerk.drehen();
+        rollWerk.drehen();
 
         //Signal durch Steckbrett schicken
         verschlüsselt = steckBrett.tauschen(verschlüsselt);
 
-        System.out.println(in+"->"+verschlüsselt);
+        System.out.println(eingabe+"->"+verschlüsselt);
 
         return verschlüsselt;
     }
 
+    /**
+     * Gibt Position aller Rollen zurück
+     * @return Ein Array, in dem die Position der Rollen in Reihenfolge der Rollen gespeichert ist. Erste Rolle -> Index 0, etc
+     */
     public int[] getRollenPositionen(){
-        return rollwerk.getRollenPositionen();
+        return rollWerk.getRollenPositionen();
     }
 
+
+    /**
+     * Setzt Position aller Rollen
+     * @param positionen  Ein Array, in dem die Position der Rollen in Reihenfolge der Rollen gespeichert ist. Erste Rolle -> Index 0, etc
+     */
     public void setPositionen(int[] positionen){
-        rollwerk.setRollenPositionen(positionen);
+        rollWerk.setRollenPositionen(positionen);
     }
 }

@@ -29,6 +29,7 @@ public class SteckBrett {
      *Falls zwischen diesem und einem anderen Stecker eine Verbindung existiert wird diese entfernt
      *
      * @param stecker Stecker, dessen Verbindung getrennt wird
+     * @return Der Stecker mit dem der gegebene Stecker verbunden war. Falls ungesteckert der Stecker selbst
      * **/
     public char ausstecken(char stecker){
         char other = (char)wiring[stecker-toChar];
