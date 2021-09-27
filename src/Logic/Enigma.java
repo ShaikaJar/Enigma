@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Enigma {
 
 
-    private Rollwerk rollWerk;
-    private SteckBrett steckBrett;
+    //Todo: Rollwerk definieren
+    //Todo: Steckbrett definieren
 
     /**
      * Eine Enigma, die das gegebene Rollwerk und Steckbrett verwendet
@@ -14,32 +14,10 @@ public class Enigma {
      * @param steckBrett Steckbrett, das zur Verschlüsselung benutzt werden soll
      */
     public Enigma(Rollwerk rollWerk, SteckBrett steckBrett) {
-        this.rollWerk = rollWerk;
-        this.steckBrett = steckBrett;
+        //Todo: Rollwerk speichern
+        //Todo: Steckbrett speichern
     }
 
-    //qtiab
-    public static void main(String[] args) {
-        Enigma enigma = new Enigma(
-                        new Rollwerk(Rolle.Rolle1,Rolle.Rolle2,Rolle.Rolle3),
-                        new SteckBrett()
-        );
-
-
-        Scanner sc = new Scanner(System.in);
-        while(true){
-            if(!sc.hasNextLine())
-                continue;
-            String inString = sc.nextLine();
-            StringBuffer out = new StringBuffer();
-            for (char inChar :
-                    inString.toCharArray()) {
-                out.append(enigma.verschlüsseln(inChar));
-            }
-            System.out.println(out);
-        }
-
-    }
 
 
     /**
@@ -48,7 +26,9 @@ public class Enigma {
      * @return Der Stecker mit dem der gegebene Stecker verbunden war. Falls ungesteckert der Stecker selbst
      */
     public char ausstecken(char stecker){
-        return steckBrett.ausstecken(stecker);
+        //Todo: Stecker ausstecken
+
+        return stecker; //Todo: Stecker, der ausgesteckt wurde zurückgeben
     }
 
 
@@ -60,7 +40,7 @@ public class Enigma {
      * @param stecker2 Zweiter Stecker
      */
     public void einstecken(char stecker1, char stecker2){
-        steckBrett.einstecken(stecker1,stecker2);
+        //TODO: stecker1 und stecker2 auf Steckbrett verbinden
     }
 
     /**
@@ -71,22 +51,16 @@ public class Enigma {
      */
     public char verschlüsseln(char eingabe) {
 
-        eingabe = Character.toUpperCase(eingabe);
+        //Todo: Signal durch Steckbrett schicken
 
-        //Signal durch Steckbrett schicken
-        char verschlüsselt = steckBrett.tauschen(eingabe);
+        //Todo: Signal durch Rollwerk schicken
 
-        //Signal durch Rollwerk schicken
-        verschlüsselt = rollWerk.verschlüsseln(verschlüsselt);
-        //Rollwerk auf nächste Position
-        rollWerk.drehen();
+        //Todo: Rollwerk drehen
 
-        //Signal durch Steckbrett schicken
-        verschlüsselt = steckBrett.tauschen(verschlüsselt);
+        //Todo: Signal durch Steckbrett schicken
 
-        System.out.println(eingabe+"->"+verschlüsselt);
-
-        return verschlüsselt;
+        //Todo: Verschlüsseltes Zeichen zurück geben
+        return eingabe;
     }
 
     /**
@@ -94,7 +68,8 @@ public class Enigma {
      * @return Ein Array, in dem die Position der Rollen in Reihenfolge der Rollen gespeichert ist. Erste Rolle -> Index 0, etc
      */
     public int[] getRollenPositionen(){
-        return rollWerk.getRollenPositionen();
+        //Todo: Position der Rollen zurück geben
+        return new int[]{0,0,0};
     }
 
 
@@ -103,6 +78,6 @@ public class Enigma {
      * @param positionen  Ein Array, in dem die Position der Rollen in Reihenfolge der Rollen gespeichert ist. Erste Rolle -> Index 0, etc
      */
     public void setPositionen(int[] positionen){
-        rollWerk.setRollenPositionen(positionen);
+        //Todo: Position der Rollen setzen
     }
 }
