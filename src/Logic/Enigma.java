@@ -64,8 +64,8 @@ public class Enigma {
     }
 
     /**
-     * Verschlüsselt einen Charakter, indem es ihn zunächst vorwärts durch alle Rollen schickt,
-     * dann durch die Umkehrwalze und dann rückwärts durch alle rollen
+     * Verschlüsselt einen Charakter, indem es ihn zunächst durch das Steckbrett schickt, dann vorwärts durch alle Rollen schickt,
+     * dann durch die Umkehrwalze, dann rückwärts durch alle Rollen und dann erneut durch das Steckbrett
      * @param eingabe Der Charakter der verschlüsselt werden soll
      * @return Ergebnis der Verschlüsselung
      */
