@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public class SteckBrett {
 
-    private int[] wiring = IntStream.range('A','Z'+1).toArray();
+    //Todo: Array für Verkabelung definieren
 
     /**
      *
@@ -16,11 +16,9 @@ public class SteckBrett {
      * @see SteckBrett#ausstecken(char)
      * **/
     public void einstecken(char steckerEins, char steckerZwei){
-        ausstecken(steckerEins);
-        ausstecken(steckerZwei);
-        wiring[VerkabelungsVorlage.positionImAlphabet(steckerEins)] = steckerZwei;
-        wiring[VerkabelungsVorlage.positionImAlphabet(steckerZwei)] = steckerEins;
-        System.out.println(steckerEins+"<->"+steckerZwei);
+        //Todo: Beide Stecker ausstecken
+
+        //Todo: Die beiden Stecker mit einander Verbinden
     }
 
 
@@ -31,11 +29,10 @@ public class SteckBrett {
      * @return Der Stecker mit dem der gegebene Stecker verbunden war. Falls ungesteckert der Stecker selbst
      * **/
     public char ausstecken(char stecker){
-        char anderer = (char)wiring[VerkabelungsVorlage.positionImAlphabet(stecker)];
-        wiring[VerkabelungsVorlage.positionImAlphabet(anderer)]=anderer;
-        wiring[VerkabelungsVorlage.positionImAlphabet(stecker)]= stecker;
-        System.out.println(stecker+"<- | ->"+anderer);
-        return anderer;
+        //Todo: Verbundenen Stecker suchen und jeweils mit sich selbst verbinden
+
+        //Todo: Vorher verbundenen Stecker zurückgeben
+        return 0;
     }
 
     /**
@@ -44,7 +41,8 @@ public class SteckBrett {
      * @return Das Zeichen, mit dem der Input verbunden ist
      */
     public char tauschen(char eingabe){
-        return (char)wiring[VerkabelungsVorlage.positionImAlphabet(eingabe)];
+        //Todo: Zeichen ausgeben, mit dem die Eingabe verbunden ist
+        return 0;
     }
 
 
