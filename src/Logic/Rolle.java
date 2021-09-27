@@ -9,13 +9,17 @@ public class Rolle {
     public static final Rolle Rolle4= new Rolle(VerkabelungsVorlage.rollen[3]);
     public static final Rolle Rolle5 = new Rolle(VerkabelungsVorlage.rollen[4]);
 
+
+    //Todo: Array für Verkabelung definieren
+    //Todo: Position definieren;
+
     /**
      * Eine Rolle, die die angegebene Verkabelung benutzt und in der Stellung 0 startet
      * @param verkabelung Ein Array, das die Position der Buchstaben im Alphabet auf einen neuen Buchstaben übersetzt
      */
     private Rolle(char[] verkabelung) {
-        this.position = 0;
-        this.verkabelung = verkabelung;
+        //Todo: Verkabelung speichern
+        //Todo: Position auf 0 starten
     }
 
 
@@ -24,15 +28,15 @@ public class Rolle {
      * @return Position der Rolle nach Drehung
      */
     public int drehen() {
-        position = (position+1)% verkabelung.length;
-        return position;
+        //Todo: Position um 1 erhöhen. Positionen größer 26 sollten wieder bei 0 beginnen
+        return 0; //Todo: Neue Position zurückgeben
     }
 
     /**
      * @return Position der Rolle
      */
     public int getPosition() {
-        return position;
+        return 0; //Todo: Position zurückgeben
     }
 
     /**
@@ -40,9 +44,10 @@ public class Rolle {
      * @throws IllegalArgumentException falls die Position nicht im erlaubten bereich liegt
      */
     public void setPosition(int position) {
-        if(position >=26 || position < 0)
-            throw new IllegalArgumentException("Position liegt nicht zwischen 0 (inklusiv) und 26 (exklusiv)");
-        this.position = position% verkabelung.length;
+        //Todo: Positionen die nicht zwischen 0 (inklusiv) und 26 (exklusiv) sollen eine IllegalArgumentException werfen
+        //  Gebt in der Exception die Nachricht "Position liegt nicht zwischen 0 (inklusiv) und 26 (exklusiv)" aus
+
+        //Todo: Position setzen
     }
 
     /**
@@ -51,7 +56,10 @@ public class Rolle {
      * @return Ergebnis der Verschlüsselung
      */
     public char vorwärts(char eingabe) {
-        return (char) (runThrough(eingabe , true));
+        //Todo: Zeichen vorwärts durch Rolle schicken
+
+        //Todo: Ergebnis der Verschlüsselung ausgeben
+        return eingabe;
     }
 
 
@@ -61,24 +69,10 @@ public class Rolle {
      * @return Ergebnis der Verschlüsselung
      */
     public char rückwärts(char eingabe) {
-        return (char) (runThrough(eingabe , false));
+        //Todo: Zeichen rückwärts durch Rolle schicken
+
+        //Todo: Ergebnis der Verschlüsselung ausgeben
+        return eingabe;
     }
 
-    private char[] verkabelung;
-    private int position = 0;
-
-
-    private int runThrough(char character, boolean forward) {
-        character = Character.toUpperCase(character);
-        if (forward) {
-            int input = VerkabelungsVorlage.positionImAlphabet(character);
-            return verkabelung[(input+position+ verkabelung.length)% verkabelung.length];
-        } else {
-            for (int i = 0; i < verkabelung.length; i++) {
-                if(verkabelung[(i+position)% verkabelung.length] == character)
-                    return (VerkabelungsVorlage.zeichenNachPositionImAlphabet(i));
-            }
-        }
-        return 'A'-1;
-    }
 }
